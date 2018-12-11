@@ -20,7 +20,7 @@ namespace Cuppsats
         public Vector3 leadDirection;
         AiHead head;
         public int waypointCounter = 3  ;
-
+        public List<GameObject> sortedWaypoints;
         public NavMeshAgent navMesh;
 
 
@@ -30,7 +30,7 @@ namespace Cuppsats
         {
             wayPoints = (GameObject.FindGameObjectsWithTag("Waypoint"));
             head = GetComponentInChildren<AiHead>();
-            currentWaypoint = wayPoints[waypointCounter].transform;
+            ArrangeWaypoints();
             navMesh = GetComponent<NavMeshAgent>();
         }
 
@@ -46,6 +46,65 @@ namespace Cuppsats
                 LeadPlayer();
             }
 
+
+
+        }
+
+        public void ArrangeWaypoints()
+        {
+            List<GameObject> tempList = new List<GameObject>();  // list to use when saving and moving the closest waypoint. 
+            GameObject closestWaypoint; //saving the waypoint temporary.
+
+
+             
+            for (int i = 0; i < wayPoints.Length; i++)
+            {
+                tempList.Add(wayPoints[i]);
+                //converts from array to list so we can remove only the closest waypoint.
+            }
+
+            for (int l = 0; l < wayPoints.Length; l++)
+            {   //everytime we go thru this loop the list will get 1 index smaller until its only 1 element left in list. 
+                float compare = 0;
+                float distance = Mathf.Infinity; ; //reference point to compare distances.
+
+                if(tempList.Count ==1)
+                {
+                    sortedWaypoints.Add(tempList[0]);
+                    break;
+                }
+
+                //int indexHolder = 0;
+                for (int j = 0; j < tempList.Count; j++)
+                {
+
+
+
+                    compare = Vector3.Distance(tempList[j].transform.position, transform.position);
+                    if ( distance > compare)
+                    {
+                        //goes thru the full list and finds the smallest distance
+                        distance = compare;
+                    }
+
+                }
+                for (int k = 0; k < tempList.Count - 1; k++)
+                {
+                    if (distance == Vector3.Distance(tempList[k].transform.position, transform.position))
+                    {
+                        //finds the waypoint with matching distance, removes it from the list and adds it in smallest first index order to a sorted list, then breaks after moving it. 
+                        closestWaypoint = tempList[k];
+                        sortedWaypoints.Add(closestWaypoint);
+                        //indexHolder = k;
+                        tempList.RemoveAt(k);
+                        break;
+
+
+                    }
+
+                }
+                //sortingList.RemoveAt(indexHolder);
+            }
 
 
         }

@@ -533,7 +533,8 @@ MonoBehaviour:
   walkspeed: 1
   leadDirection: {x: 0, y: 0, z: 0}
   waypointCounter: 0
-  navMesh: {fileID: 0}
+  sortedWaypoints: []
+  navMesh: {fileID: 1049382420}
 --- !u!195 &1049382420
 NavMeshAgent:
   m_ObjectHideFlags: 0
