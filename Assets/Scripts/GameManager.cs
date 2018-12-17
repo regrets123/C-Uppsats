@@ -14,6 +14,7 @@ namespace Cuppsats
         public bool enter;
         public bool exit;
         string inget = " ";
+        public string ItemTag = "Artefact";
         string beenHere = "Iw already examined this.";
 
 
@@ -21,6 +22,7 @@ namespace Cuppsats
         void Start()
         {
             gameManager = gameObject.GetComponent<GameManager>();
+            
             text = gameManager.GetComponentsInChildren<Text>();
         }
         void Update()
@@ -61,7 +63,7 @@ namespace Cuppsats
             if (Physics.Raycast(ray, out hit))
             {
 
-                if (hit.collider.gameObject.tag == "Artefact")
+                if (hit.collider.gameObject.tag == ItemTag)
                 {
                     //GameObject lookingAt;
                     text[0].text = hit.collider.gameObject.GetComponent<Artefact>().WatchMe();
