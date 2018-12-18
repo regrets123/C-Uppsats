@@ -58,7 +58,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _Distance: 30
+    - _Distance: 350
     - _DstBlend: 10
     - _EmissionScaleUI: 0
     - _Falloff: 1.6

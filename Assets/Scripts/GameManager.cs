@@ -15,7 +15,8 @@ namespace Cuppsats
         public bool exit;
         string inget = " ";
         public string ItemTag = "Artefact";
-        string beenHere = "Iw already examined this.";
+        string beenHere = "I've already examined this.";
+        public GameObject lastScanned;
 
 
         // Use this for initialization
@@ -36,7 +37,8 @@ namespace Cuppsats
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if(text[1].text == "E to Examine "+item.gameObject.name)
+                lastScanned.GetComponent<ParticleSystem>().Stop(true);
+                if (text[1].text == "E to Examine "+item.gameObject.name)
                 {
                     if (item.gameObject.GetComponent<Artefact>().examined)
                     {
@@ -57,30 +59,45 @@ namespace Cuppsats
 
         private void ItemScan()
         {
-            if(enter)
+            //GameObject temp;
+            if (enter)
             { return; }
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             if (Physics.Raycast(ray, out hit))
             {
+                
 
                 if (hit.collider.gameObject.tag == ItemTag)
                 {
+                    lastScanned = hit.collider.gameObject;
                     //GameObject lookingAt;
                     text[0].text = hit.collider.gameObject.GetComponent<Artefact>().WatchMe();
+                    //lastScanned.GetComponent<ParticleSystem>().Play(true);
                     //lookingAt = hit.collider.gameObject;
                     //ItemInspect(lookingAt);
+
 
                 }
                 else
                 {
                     string inget = " ";
                     text[0].text = inget;
+
+                    //if (looking)
+                    //{
+                    //if(lastScanned != null)
+                    //lastScanned.GetComponent<ParticleSystem>().Stop(true);
+                    //    looking = false;
+                    //}
                 }
+
             }
             else
             {
                 string inget = " ";
                 text[0].text = inget;
+                //if (lastScanned != null)
+                //    lastScanned.GetComponent<ParticleSystem>().Stop(true);
             }
         }
 
