@@ -22,6 +22,10 @@ namespace Cuppsats
         public int waypointCounter = 0  ;
         public List<GameObject> sortedWaypoints;
         public NavMeshAgent navMesh;
+        float timetoRest = 30;
+        float timetoSleep = 15;
+
+        public Animator animator;
 
         private bool enter = false;
 
@@ -34,7 +38,7 @@ namespace Cuppsats
 
         void Start()
         {
-            
+            animator = GetComponentInParent<Animator>();
             head = GetComponentInChildren<AiHead>();
             ArrangeWaypoints();
             navMesh = GetComponent<NavMeshAgent>();
@@ -44,14 +48,28 @@ namespace Cuppsats
         // Update is called once per frame
         void Update()
         {
+            
             if (idle)
             {
                 WaitingForPlayer();
+                if (timetoRest > 0 )
+                timetoRest -= Time.deltaTime;
+                else if(timetoRest < 0)
+                {
+                    animator.SetTrigger("sittingTrigger");
+                    if (timetoSleep > 0)
+                        timetoSleep -= Time.deltaTime;
+                    else if (timetoSleep < 0)
+                        animator.SetTrigger("sleepingTrigger");
+                }
+                
             }
             else
             {
+                timetoRest = 10;
                 LeadPlayer();
             }
+
 
 
 
@@ -135,6 +153,8 @@ namespace Cuppsats
                     FollowWaypoint(runspeed);
                 }
                 FollowWaypoint(walkspeed);
+                Debug.Log("walking");
+                animator.SetTrigger("walkingTrigger");
             }
 
         }

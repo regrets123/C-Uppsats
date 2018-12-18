@@ -74,7 +74,7 @@ namespace Cuppsats
                 else
                 {
                     string inget = " ";
-                    text[0].text = inget;
+                    text[0].text = inget;   
                 }
             }
             else
