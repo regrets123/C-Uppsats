@@ -51,6 +51,7 @@ namespace Cuppsats
             
             if (idle)
             {
+                animator.SetTrigger("standingTrigger");
                 WaitingForPlayer();
                 if (timetoRest > 0 )
                 timetoRest -= Time.deltaTime;
