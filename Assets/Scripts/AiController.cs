@@ -10,6 +10,7 @@ namespace Cuppsats
 
         public Transform player;
         private Transform currentWaypoint;
+        public string waypointTag;
         public GameObject[] wayPoints;
         public int triggerDistance = 20;
         public int triggerSprint = 10;
@@ -24,6 +25,8 @@ namespace Cuppsats
         public NavMeshAgent navMesh;
         float timetoRest = 30;
         float timetoSleep = 15;
+      
+
 
         public Animator animator;
 
@@ -32,8 +35,8 @@ namespace Cuppsats
 
         // Use this for initialization
         void Awake()
-        {
-            wayPoints = (GameObject.FindGameObjectsWithTag("Waypoint"));
+        {   
+            wayPoints = (GameObject.FindGameObjectsWithTag(waypointTag));
         }
 
         void Start()
