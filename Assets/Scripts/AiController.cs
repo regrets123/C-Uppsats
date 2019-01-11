@@ -61,7 +61,7 @@ namespace Cuppsats
                 else if(timetoRest < 0)
                 {
                     animator.SetTrigger("sittingTrigger");
-                    animator.ResetTrigger("StandingTrigger");
+                    animator.ResetTrigger("standingTrigger");
                     if (timetoSleep > 0)
                         timetoSleep -= Time.deltaTime;
                     else if (timetoSleep < 0)
