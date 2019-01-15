@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Artefact
   - Waypoint
+  - Waypoint2
+  - Waypoint3
+  - Waypoint4
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Terrain
   - 
   - 
   - 

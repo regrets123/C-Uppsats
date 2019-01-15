@@ -15,22 +15,21 @@ namespace Cuppsats
         public int triggerDistance = 20;
         public int triggerSprint = 10;
         public bool idle = true;
-        public float runspeed = 10;
-        public float walkspeed = 5;
+        public float runspeed = 6;
+        public float walkspeed = 3;
         Vector3 direction;
         public Vector3 leadDirection;
         AiHead head;
         public int waypointCounter = 0  ;
         public List<GameObject> sortedWaypoints;
-        public NavMeshAgent navMesh;
-        float timetoRest = 30;
-        float timetoSleep = 15;
-      
-
-
+        float timetoRest = 10;
+        float timetoSleep = 5;
+        public float rotationDrag = 10;
+        public bool rdyToRun = false;
+        public float getRdyTime = 0.5f;
+ 
+        RaycastHit hit;
         public Animator animator;
-
-        private bool enter = false;
 
 
         // Use this for initialization
@@ -43,39 +42,44 @@ namespace Cuppsats
         {
             animator = GetComponentInParent<Animator>();
             head = GetComponentInChildren<AiHead>();
+
             ArrangeWaypoints();
-            navMesh = GetComponent<NavMeshAgent>();
             
         }
 
         // Update is called once per frame
         void Update()
         {
-            
             if (idle)
             {
+                rdyToRun = false;
                 animator.SetTrigger("standingTrigger");
+                animator.ResetTrigger("walkingTrigger");
                 WaitingForPlayer();
                 if (timetoRest > 0 )
                 timetoRest -= Time.deltaTime;
                 else if(timetoRest < 0)
                 {
                     animator.SetTrigger("sittingTrigger");
+                    animator.ResetTrigger("standingTrigger");
                     if (timetoSleep > 0)
                         timetoSleep -= Time.deltaTime;
                     else if (timetoSleep < 0)
                         animator.SetTrigger("sleepingTrigger");
+                        animator.ResetTrigger("SittingTrigger");
                 }
                 
             }
             else
             {
                 timetoRest = 10;
-                LeadPlayer();
+                if(rdyToRun)
+                {
+                    LeadPlayer();
+                }
+                else
+                StartCoroutine("GetUp");
             }
-
-
-
 
         }
 
@@ -90,7 +94,6 @@ namespace Cuppsats
             {
                 
                 tempList.Add(wayPoints[i]);
-                //Debug.Log("Adding this gameobject to templist " + tempList[i].name);
                 //converts from array to list so we can remove only the closest waypoint.
             }
 
@@ -115,22 +118,15 @@ namespace Cuppsats
                     //Debug.Log("Calculated distance to waypoint " +tempList[j].name +" is " +distance);
                     if ( distance > compare)
                     {
-                        //goes thru the full list and finds the smallest distance
-
                         distance = compare;
-                        
                     }
-                    //Debug.Log("Smallest distance is" + distance);
                 }
                 for (int k = 0; k < tempList.Count; k++)
                 {
                     if (distance == Vector3.Distance(tempList[k].transform.position, transform.position))
                     {
-
-                        //Debug.Log("Closest waypoint is" + tempList[k].name +" at "+distance);
-                        //finds the waypoint with matching distance, removes it from the list and adds it in smallest first index order to a sorted list, then breaks after moving it. 
                         closestWaypoint = tempList[k];
-                        //Debug.Log("Removing this object from templist" +tempList[k].name);
+
                         sortedWaypoints.Add(closestWaypoint);
                         tempList.RemoveAt(k);
                         break;
@@ -149,6 +145,7 @@ namespace Cuppsats
             if (Vector3.Distance(player.position, transform.position) > triggerDistance)
             {
                 idle = true;
+                rdyToRun = false;
             }
             else
             {
@@ -159,6 +156,8 @@ namespace Cuppsats
                 FollowWaypoint(walkspeed);
                 Debug.Log("walking");
                 animator.SetTrigger("walkingTrigger");
+                animator.ResetTrigger("standingTrigger");
+                animator.ResetTrigger("sittingTrigger");
             }
 
         }
@@ -173,54 +172,42 @@ namespace Cuppsats
             else
             {
                 direction = player.position - transform.position;
-                //head.LookAtPlayer(direction);
-                navMesh.isStopped = true;
+
             }
+        }
+
+        IEnumerator GetUp()
+        {
+            yield return new WaitForSeconds(getRdyTime);
+            rdyToRun = true;
         }
 
         public void FollowWaypoint(float speed)
         {
-            navMesh.speed = speed;
-            //leadDirection = currentWaypoint.position - transform.position;
-            navMesh.isStopped = false;
-            navMesh.SetDestination(currentWaypoint.position);
-
-            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(leadDirection), 0.1f);
-
-
-            //transform.Translate(0, 0, 0.05f);
+            leadDirection = currentWaypoint.position - transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(leadDirection, transform.up), rotationDrag);
         }
 
         public void OnTriggerEnter (Collider coll)
         {
             
-                enter = true;
                 Debug.Log("TRIGGERD");
-                if (waypointCounter > wayPoints.Length - 1 || waypointCounter == wayPoints.Length - 1)
+                if (waypointCounter > wayPoints.Length - 1)
                 {
-                    navMesh.isStopped = true;
+ 
                 }
                 else
                 {
-                    navMesh.isStopped = false;
                     waypointCounter += 1;
                     currentWaypoint = sortedWaypoints[waypointCounter].transform;
-                    Debug.Log("Moving Towards "+currentWaypoint);
-                    navMesh.SetDestination(currentWaypoint.position);
-                }
-                coll.isTrigger = false;
-            
+                 }
+                if(coll.gameObject.tag == waypointTag)
+                    coll.gameObject.SetActive(false);            
             
            
         }
 
-        //public void OnTriggerExit(Collider other)
-        //{
-        //    Debug.Log("LEAVING");
-            
-        //        enter = false;
-        //    Destroy(other.gameObject);
-        //}
 
     }
 }
