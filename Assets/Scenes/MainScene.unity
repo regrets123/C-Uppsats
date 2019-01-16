@@ -2958,7 +2958,86 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1984451203293588, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_TagString
+      value: Artefact
+      objectReference: {fileID: 0}
+    - target: {fileID: 114895537350278300, guid: 0396b70919c4c18459c86726b8b2ac47,
+        type: 2}
+      propertyPath: itemDescription
+      value: You can almost hear the battlemusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110452005160992, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_TagString
+      value: Artefact
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670967740836258, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.26102048
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670967740836258, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.96533334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670967740836258, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -30.261002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502379465260182, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.20053874
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502379465260182, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.12789872
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502379465260182, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.5222906
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502379465260182, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.8189254
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502379465260182, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -27.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502379465260182, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -65.05701
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613920424803612, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.2654967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613920424803612, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.96411175
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613920424803612, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -30.793001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670967740836258, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 94.401
+      objectReference: {fileID: 0}
+    - target: {fileID: 4670967740836258, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 82.118
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613920424803612, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 94.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411134907063034, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_TagString
+      value: Artefact
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 199953760884643078, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+    - {fileID: 198612514670629504, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &1429020234 stripped
