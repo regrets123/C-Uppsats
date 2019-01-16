@@ -38,7 +38,7 @@ namespace Cuppsats
             if (Input.GetKeyDown(KeyCode.E))
             {
                 lastScanned.GetComponent<ParticleSystem>().Stop(true);
-                if (text[1].text == "E to Examine "+item.gameObject.name)
+                if (text[1].text == "E to Examine "+item.GetComponent<Artefact>().itemName)
                 {
                     if (item.gameObject.GetComponent<Artefact>().examined)
                     {
@@ -111,7 +111,7 @@ namespace Cuppsats
         {
             enter = true;
             item = other;
-            text[1].text = "E to Examine " +item.gameObject.name;
+            text[1].text = "E to Examine " +item.GetComponent<Artefact>().itemName;
                 
 
         }
