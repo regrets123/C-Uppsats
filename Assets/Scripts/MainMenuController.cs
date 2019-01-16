@@ -12,7 +12,6 @@ public class MainMenuController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
     }
 
     public void LoadScene(string sceneToBeLoaded)
@@ -27,6 +26,8 @@ public class MainMenuController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        Cursor.visible = true;
 		
 	}
 }
