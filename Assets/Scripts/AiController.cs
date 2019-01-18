@@ -217,7 +217,8 @@ namespace Cuppsats
 
         public void OnTriggerEnter (Collider coll)
         {
-            
+            if(coll.gameObject.tag == waypointTag)
+            { 
                 if (waypointCounter > wayPoints.Length - 1)
                 {
  
@@ -230,9 +231,9 @@ namespace Cuppsats
                 
                  }
                 if(coll.gameObject.tag == waypointTag)
-                    coll.gameObject.SetActive(false);            
-            
-           
+                    coll.gameObject.SetActive(false);
+
+            }
         }
 
 
