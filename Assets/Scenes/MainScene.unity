@@ -3071,6 +3071,14 @@ Prefab:
       propertyPath: m_TagString
       value: Artefact
       objectReference: {fileID: 0}
+    - target: {fileID: 1136868717532312, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_TagString
+      value: Artefact
+      objectReference: {fileID: 0}
+    - target: {fileID: 1160640977286282, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
+      propertyPath: m_TagString
+      value: Artefact
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 199953760884643078, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
     - {fileID: 198612514670629504, guid: 0396b70919c4c18459c86726b8b2ac47, type: 2}
